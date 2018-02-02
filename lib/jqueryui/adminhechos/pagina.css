@@ -1,0 +1,37 @@
+#lista {
+  	-moz-border-radius: 4px;
+	border-radius: 4px;
+  	/*padding: 2em 1.5em;*/
+	color: rgba(0,0,0, .8);
+  	text-shadow: 0 1px 0 #fff;
+  	line-height: 1.5;
+  	/*margin: 60px auto;*/
+	width: 450px;
+	list-style: none;
+
+}
+
+#lista > li {
+	margin: 10px auto;
+	width: 400px;
+	text-align: center;
+	padding: 10px; outline: 2px dashed #CCC;
+}
+#lista > li:hover {
+    outline: 2px dashed #7C1F30;
+}
+#lista > li:hover, #lista > li:focus { background: #FFFFD3; }
+#lista > li[contenteditable=true]:hover:after {
+    content: ' click para editar';
+    font-style: italic;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #ccc;
+}
+#lista > li[contenteditable=false]:hover:after {
+    content: ' arrastrar para ordenar';
+    font-style: italic;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #ccc;
+}

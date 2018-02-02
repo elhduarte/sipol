@@ -1,0 +1,422 @@
+#comentario
+{
+		color:#000000;
+	background-color:transparent;
+	font-size:12px;
+}
+.comentario
+{
+	color: #595959;
+	margin-bottom: 10px;
+	background-color: transparent;
+	font-size: 12px;
+	font-style: italic;
+	margin-left: 4px;
+
+}	
+.legend 
+{
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 5px;
+    font-size: 21px;
+    line-height: 40px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.mcerrar {
+    padding: 9px 15px;
+}
+.formulario
+{
+    margin-bottom: 0px;
+    border-bottom-width: 1px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.comentario-fit
+{
+    color: #595959;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    background-color: transparent;
+    font-size: 12px;
+    font-style: italic;
+
+}   
+.comentario-b
+{
+    float : left;
+    color: #595959;
+    margin-bottom: 10px;
+    background-color: transparent;
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 4px;
+
+}
+.divlineal
+{
+    float : right;
+    padding: 8px;
+}   
+.campotit
+{
+    text-align:center;
+    /*font-weight:bold;*/
+    /*font-style: italic;  */  
+    margin-bottom: 4px;
+    font-size: 13px;
+
+}
+.campotit2
+{
+    /*font-weight:bold;
+    font-style: italic;*/
+    margin-bottom: 3px;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 13px;
+
+}
+
+.campotit3
+{
+    /*font-weight:bold;
+    font-style: italic;*/
+    /*margin-bottom: 3px;
+    margin-top: 10px;
+    margin-left: 5px;*/
+    font-size: 13px;
+    padding-top: 5px; 
+    text-align: right;
+
+}
+
+#renapp
+{
+
+    display: block;
+}
+#caracteristicas
+{
+
+    display:none;
+}
+#textoculto
+{
+    display:none;
+}
+#textooculto
+{
+    display:none;
+}
+#textooculto_jp
+{
+    display:none;
+}
+#respuestaplacaplaca_DEV
+{
+    display:none;
+}
+.error
+{
+    color: #595959;
+
+    background-color: transparent;
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 4px;
+}  
+#caracteristicas_jp
+{
+
+    display:none;
+}
+.welsh
+{
+    /*min-height:20px;*/
+    padding:5px;
+    /*margin-bottom:20px;
+    /*background-color:#f5f5f5;
+    border:1px solid #eee;
+    border:1px solid rgba(0, 0, 0, 0.05);*/
+}
+.NewForm
+{
+    padding:5px;
+    
+}
+.labelNewForm
+{
+    width:135px;
+    font-style: italic;
+    font-weight: bold;
+}
+.zebra 
+{
+    background: #ccc;
+}
+
+.imagen_renap
+{
+    width: auto; 
+    max-width:80%; 
+    border-radius: 15px 15px 15px 15px; 
+    border: 1px solid rgb(165, 165, 165);
+    margin-top: 10%;
+}
+.imagen_usuario
+{   
+    max-width:2%; 
+    border-radius: 15px 15px 15px 15px; 
+    border: 1px solid rgb(165, 165, 165);
+ 
+}
+
+.map img 
+{ 
+    max-width:none;
+}
+
+.map
+{
+    height:500px;
+}
+
+.legend_tt
+{ 
+    color: #FFFFFF;
+    padding: 0px;
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 30px;
+    margin-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(70, 70, 70);
+
+}
+.img_relato
+{
+    height: 14px;
+    /*max-width:65%;*/
+}
+
+.BotonClose
+{
+font-size: 20px;
+font-weight: bold;
+line-height: 20px;
+color: rgb(0, 0, 0);
+text-shadow: 0 1px 0 rgb(255, 255, 255);
+opacity: .6;
+cursor:pointer;
+filter: alpha(opacity=20);
+border:0px;
+background: rgba(0, 0, 0, 0);
+}
+
+.BotonClose:hover
+{
+    opacity:.4;
+    filter:alpha(opacity=20)
+}
+
+.legendfit
+{
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.SipolIcon:hover
+{
+    opacity:.4;
+    filter:alpha(opacity=20)
+}
+
+.sipolIconDiv
+{
+    text-align:center; 
+    padding:1%;
+}
+
+.campotitform
+{
+    font-size: 13px;
+    margin-top: 5px;
+
+}
+
+.labelform
+{
+    text-align: right;
+}
+@media(max-width:768px)
+{
+    .labelform
+    {
+        text-align: left;
+    }
+}
+
+.olControlLayerSwitcher .layersDiv 
+{
+        background-color: rgb(0, 68, 204);
+        color: #FFFFFF;
+        font-size: 12px;
+        opacity: 0.8;
+        padding: 5px 10px 5px 5px;
+
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.65);
+        overflow: hidden;
+}
+
+.dataLayersDiv 
+{
+    display: none;
+}
+
+.dataLbl
+{
+    display: none;
+}
+
+.legendInfo
+{
+    color: rgb(61, 91, 105);
+    border-bottom-color: rgba(143, 193, 207, 0.54);
+    margin-bottom: 0.3%;
+    margin-top: 0.7%;
+
+}
+
+.radioInline
+{
+    font-size: 13px;
+}
+
+.panelActivo a
+{
+    background-color: rgb(0, 136, 204);
+    color: rgb(255, 255, 255);
+}
+
+.panelActivo i
+{
+    opacity: .5;
+}
+
+.pageEncabezado
+{
+    color: rgb(90, 90, 90);
+    padding-bottom: 9px;
+}
+
+.pageEncabezado label:hover
+{
+    text-decoration: underline;
+}
+.pageEncabezado i
+{
+    opacity: 0.8;
+}
+
+.DivMargenAbajo
+{
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.tituloN
+{
+    display: block;
+    width: 100%;
+    /*line-height: 40px;*/
+    padding: 0;
+    font-size: 21px;
+    color: rgb(51, 51, 51);
+}
+
+#advancedSearchHeader:hover .onlyTitle
+{
+    cursor:pointer;
+    opacity:.7;
+
+}
+
+#modalPreview{
+    width: auto;
+    top:35%;
+    bottom: 10%;
+    left: 40%;
+}
+
+#modalPreview .modal-body{
+    max-height: 100%;
+}
+
+.campoInvalido
+{
+    border: 1px solid rgb(255, 0, 0) !important;
+    box-shadow: 0px 0px 10px -2px rgb(255, 0, 0) !important;
+}
+
+.dosOptions span
+{
+    font-size: 12px;
+    padding-bottom: 2%;
+}
+
+.searchPersonaBtn
+{
+    padding-left: 6px; 
+    padding-right: 6px;
+}
+
+.hechosButtons
+{
+    padding: 0% 0.5%;
+    float: right;
+}
+
+.buttonColumns
+{
+    color: rgb(0, 0, 0);
+    text-shadow: 0 1px 0 rgb(255, 255, 255);
+    opacity: .9;
+    cursor:pointer;
+    filter: alpha(opacity=20);
+    border:0px;
+    background: rgba(0, 0, 0, 0);
+}
+
+.buttonColumns:hover
+{
+    opacity:.6;
+    filter:alpha(opacity=20)
+}
+
+.iconClose
+{
+    opacity: .7;
+    font-size: 18px;
+}
+
+.iconClose:hover
+{
+    opacity:.6;
+    filter:alpha(opacity=20)
+}

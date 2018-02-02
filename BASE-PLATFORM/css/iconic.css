@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'IconicStroke';
+    src: url("fonts/iconic/iconic_stroke.eot");
+    src: local('IconicStroke'),
+       url("fonts/iconic/iconic_stroke.svg#iconic") format('svg'),
+	   url("fonts/iconic/iconic_stroke.otf") format('opentype');
+}
+
+.iconic {
+	color:inherit;
+	font-family: "IconicStroke";
+	font-size: 38px;
+	line-height: 20px;
+	vertical-align: middle;
+}
+
+a.iconic:hover {
+	color:inherit;
+}
+
+.iconic.home:before { }
+.iconic.at:before {}
+.iconic.quote:before {}
+.iconic.quote-alt:before { }
+.iconic.arrow-up:before { }
+.iconic.arrow-right:before {}
+.iconic.arrow-bottom:before {}
+.iconic.arrow-left:before { }
+.iconic.arrow-up-alt:before {}
+.iconic.arrow-right-alt:before {}
+.iconic.arrow-bottom-alt:before { }
+.iconic.arrow-left-alt:before { }
+.iconic.move:before {}
+.iconic.move-vertical:before { }
+.iconic.move-horizontal:before {}
+.iconic.move-alt:before { }
+.iconic.move-vertical-alt:before { }
+.iconic.move-horizontal-alt:before { }
+.iconic.cursor:before {}
+.iconic.plus:before {}
+.iconic.plus-alt:before {}
+.iconic.minus:before {}
+.iconic.minus-alt:before {}
+.iconic.new-window:before {}
+.iconic.dial:before {}
+.iconic.lightbulb:before {}
+.iconic.link:before {}
+.iconic.image:before {}
+.iconic.article:before {}
+.iconic.read-more:before {}
+.iconic.headphones:before {}
+.iconic.equalizer:before {}
+.iconic.fullscreen:before {}
+.iconic.exit-fullscreen:before {}
+.iconic.spin:before {}
+.iconic.spin-alt:before {}
+.iconic.moon:before {}
+.iconic.sun:before {}
+.iconic.map-pin:before {}
+.iconic.pin:before { content: "|"; }
+.iconic.eyedropper:before { content: "~"; }
+.iconic.denied:before { content: "`"; }
+.iconic.calendar:before { content: "a"; }
+.iconic.calendar-alt:before { content: "A"; }
+.iconic.bolt:before { content: "b"; }
+.iconic.clock:before { content: "c"; }
+.iconic.document:before { content: "d"; }
+.iconic.book:before { content: "e"; }
+.iconic.book-alt:before { content: "E"; }
+.iconic.magnifying-glass:before { content: "f"; }
+.iconic.tag:before { content: "g"; }
+.iconic.heart:before { content: "h"; }
+.iconic.info:before { content: "i"; }
+.iconic.chat:before { content: "j"; }
+.iconic.chat-alt:before { content: "J"; }
+.iconic.key:before { content: "k"; }
+.iconic.unlocked:before { content: "l"; }
+.iconic.locked:before { content: "L"; }
+.iconic.mail:before { content: "m"; }
+.iconic.mail-alt:before { content: "M"; }
+.iconic.phone:before { content: "n"; }
+.iconic.box:before { content: "o"; }
+.iconic.pencil:before { content: "p"; }
+.iconic.pencil-alt:before { content: "P"; }
+.iconic.comment:before { content: "q"; }
+.iconic.comment-alt:before { content: "Q"; }
+.iconic.rss:before { content: "r"; }
+.iconic.star:before { content: "s"; }
+.iconic.trash:before { content: "t"; }
+.iconic.user:before { content: "u"; }
+.iconic.volume:before { content: "v"; }
+.iconic.mute:before { content: "V"; }
+.iconic.cog:before { content: "w"; }
+.iconic.cog-alt:before { content: "W"; }
+.iconic.x:before { content: "x"; }
+.iconic.x-alt:before { content: "X"; }
+.iconic.check:before { content: "y"; }
+.iconic.check-alt:before { content: "Y"; }
+.iconic.beaker:before { content: "z"; }
+.iconic.beaker-alt:before { content: "Z"; }

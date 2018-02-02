@@ -1,0 +1,472 @@
+<legend>Novedades index</legend>
+<?php 
+ /**
+* Autor:Lester Hazael Gudiel Villamar
+* Lugar: Ministerio de Gobernacion Guatemala, Guatemala
+* Fecha: 02-08-2013
+* Correo: mingob.correo@gmail.com;hugoduarteq@gmail.com;alejandropr1@gmail.com
+* Site: www.lgudiel.com
+*/
+
+
+$id_rol = Yii::app()->session['ID_ROL_SIPOL'];
+$deco =json_decode($id_rol);
+
+foreach ($deco as $key => $value) 
+{
+	foreach ($value as $pos => $valor)
+	{
+		if($pos == "id_entidad")
+		{
+		$rol =  $valor;
+		}
+	}
+}
+$rol = 14;
+//echo $rol;
+
+ ?>
+ <script type="text/javascript"src="<?php echo Yii::app()->request->baseUrl; ?>/lib/highcharts/highcharts.js"></script>
+<script type="text/javascript"src="<?php echo Yii::app()->request->baseUrl; ?>/lib/highcharts/modules/exporting.js"></script>
+<script type="text/javascript"src="<?php echo Yii::app()->request->baseUrl; ?>/js/tooltips.js"></script>
+<script type="text/javascript">
+$(document).ready(function() 
+{
+	
+
+	$("#esta_departamento").prepend(new Option('Todos', 'Todos', true, true));
+	$("#esta_municipio").prepend(new Option('', '', true, true));
+//$("#esta_departamento option:first").attr("selected", "selected");
+
+
+	 var municipio = "";
+function actualizaMupio()
+{
+
+
+ var depto = $('#esta_departamento').val()
+ //var depto = $('#cmb_depto').val();
+ $.ajax({
+         type: "POST",
+         url: <?php echo "'".CController::createUrl('Mapa/getMupios')."'"; ?>,
+         data: {param:depto},
+         		beforeSend: function()
+			{
+				    //$("#esta_municipio").prepend(new Option('Todos', 'Todos', true, true));
+			},//fin beforesend
+         success: function(result)
+         {
+         	municipio = '';
+           $("#esta_municipio").empty();
+           $("#esta_municipio").html(result);
+           $("#esta_municipio").removeAttr('disabled');
+       
+           //alert(result); 
+         }
+
+       });
+}
+
+
+
+	$.fn.consultaestadistica = function(nuevo) { 
+
+		var grafica_denuncia_hoy = $('#grafica_denuncia_hoy').attr('class');
+		var grafica_denuncia_ayer = $('#grafica_denuncia_ayer').attr('class');
+		var grafica_denuncia_unasemana = $('#grafica_denuncia_unasemana').attr('class');
+		var grafica_denuncia_dossemana = $('#grafica_denuncia_dossemana').attr('class');
+		var grafica_denuncia_unmes = $('#grafica_denuncia_unmes').attr('class');
+		var tiempo = "";
+		if(grafica_denuncia_hoy == "btn btn-small" && grafica_denuncia_ayer == "btn btn-small" && grafica_denuncia_unasemana == "btn btn-small" 
+		 &&  grafica_denuncia_dossemana == "btn btn-small"  && grafica_denuncia_unmes == "btn btn-small"  )
+		{
+			//alert("todos los campos son iguales");
+			tiempo="6";
+
+		}else{
+
+			if(grafica_denuncia_hoy == "btn btn-small btn-primary")
+			{
+				tiempo="1";
+
+			}else if(grafica_denuncia_ayer == "btn btn-small btn-primary")
+			{
+				tiempo="2";
+
+			}else if(grafica_denuncia_unasemana == "btn btn-small btn-primary")
+			{
+				tiempo="3";
+
+			}else if(grafica_denuncia_dossemana == "btn btn-small btn-primary")
+			{
+				tiempo="4";
+
+			}else if(grafica_denuncia_unmes == "btn btn-small btn-primary")
+			{
+				tiempo="5";
+
+			}
+
+
+		}
+
+
+		//alert(className);
+		var estado = $('#esta_estado').val();
+		//var tipo = $('#esta_tipo').val();
+		//var departamento = $('#esta_departamento').val();
+		//$("#esta_departamento option:selected").text();
+	 	var departamento = $("#esta_departamento").val();		
+		//var municipio = $('#esta_municipio').val();
+ 		var municipio = $("#esta_municipio").val();
+  		var graficatipo =$("input[name=optionsRadios]:checked");
+            if (graficatipo.val())
+            	graficatipo = graficatipo.val();
+                //alert("SELECCIONADO " +graficatipo.val());
+            else {
+                //alert("NINGUN VALOR SELECCIONADO")  
+            } 
+     //alert('Termina la funcion de jquery');
+
+     if(graficatipo == "grafica")
+     {
+     	$('#graficador').html('');
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo Yii::app()->createUrl('estadisticas/graficasnovedades'); ?>',
+			data: {
+						estado: estado,
+						//tipo: tipo,
+						departamento: departamento,
+						municipio: municipio,
+						graficatipo: graficatipo,
+						evento: nuevo,
+						tiempo: tiempo,
+						comisaria : <?php echo $rol; ?>
+					},
+			beforeSend: function(html)
+			{
+				$('#graficador').html('<h4><strong>Procesando,</strong>espere por favor...</h4>');
+			},//fin beforesend
+			success: function(html)
+			{
+				$('#graficador').html('');
+				$('#graficador').html(html);
+			},// fin de success
+		});//fin de la funcion ajax
+
+     }else if(graficatipo == "mapas")
+     {
+     	$('#graficador').html('');
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo Yii::app()->createUrl('estadisticas/mapasnovedades'); ?>',
+			data: {
+						estado: estado,
+						//tipo: tipo,
+						departamento: departamento,
+						municipio: municipio,
+						graficatipo: graficatipo,
+						evento: nuevo,
+						tiempo: tiempo,
+						comisaria : <?php echo $rol; ?>
+					},
+			beforeSend: function(html)
+			{
+				$('#graficador').html('<h4><strong>Procesando,</strong>espere por favor...</h4>');
+			},//fin beforesend
+			success: function(html)
+			{
+				$('#graficador').html('');
+				$('#graficador').html(html);
+			},// fin de success
+		});//fin de la funcion ajax
+
+     }else{
+     	$('#graficador').html('');
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo Yii::app()->createUrl('estadisticas/graficasmapasnovedades'); ?>',
+			data: {
+						estado: estado,
+						//tipo: tipo,
+						departamento: departamento,
+						municipio: municipio,
+						graficatipo: graficatipo,
+						evento: nuevo,
+						tiempo: tiempo,
+						comisaria : <?php echo $rol; ?>
+					},
+			beforeSend: function(html)
+			{
+				$('#graficador').html('<h4><strong>Procesando,</strong>espere por favor...</h4>');
+			},//fin beforesend
+			success: function(html)
+			{
+				$('#graficador').html('');
+				$('#graficador').html(html);
+			},// fin de success
+		});//fin de la funcion ajax
+
+     }
+
+     	
+	};
+	
+	$('#esta_estado').change(function(){
+		$('#esta_estado').consultaestadistica('estado');
+	});
+	/*$('#esta_tipo').change(function(){
+		$('#esta_tipo').consultaestadistica('tipo');
+	});*/
+
+	/*$('#esta_departamento').change(function(){
+			$('#esta_departamento').consultaestadistica('departamento');
+
+		});*/
+
+ $('#esta_departamento').change(function(){
+//actualizaMupio();
+ //$("#esta_municipio").prepend(new Option('Todos', 'Todos', true, true));
+$("#esta_municipio").val('Todos');
+$('#esta_municipio').empty();
+  actualizaMupio();
+ 
+
+$('#esta_departamento').consultaestadistica('departamento');
+});
+
+
+	$('#esta_municipio').change(function(){
+			$('#esta_municipio').consultaestadistica('Municipio');
+		});
+
+$('#optionsRadios1').click(function(){
+/*var opcion = $('#optionsRadios1').val();
+alert(opcion);*/
+$('#optionsRadios1').consultaestadistica('graficas radio');
+});
+$('#optionsRadios2').click(function(){
+/*var opcion = $('#optionsRadios2').val();
+alert(opcion);*/
+$('#optionsRadios2').consultaestadistica('mapas radio');
+});
+$('#optionsRadios3').click(function(){
+/*var opcion = $('#optionsRadios3').val();
+alert(opcion);*/
+$('#optionsRadios3').consultaestadistica('graficas y mapas radio');
+});
+
+
+
+	$("#grafica_denuncia_hoy").click(function() {
+		$('#grafica_denuncia_hoy').removeClass(); 
+		$('#grafica_denuncia_hoy').addClass("btn btn-small btn-primary");  	
+		$('#grafica_denuncia_ayer').removeClass();  
+		$('#grafica_denuncia_ayer').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unasemana').removeClass();
+		$('#grafica_denuncia_unasemana').addClass("btn btn-small");   	
+		$('#grafica_denuncia_dossemana').removeClass(); 
+		$('#grafica_denuncia_dossemana').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unmes').removeClass(); 
+		$('#grafica_denuncia_unmes').addClass("btn btn-small");   
+		//se hace via ajax
+		$('#grafica_denuncia_hoy').consultaestadistica('hoy');
+
+
+	});//fin de la funcion de click para el boton de 1 mes
+
+	$("#grafica_denuncia_ayer").click(function() {
+		$('#grafica_denuncia_hoy').removeClass(); 
+		$('#grafica_denuncia_hoy').addClass("btn btn-small");  	
+		$('#grafica_denuncia_ayer').removeClass();  
+		$('#grafica_denuncia_ayer').addClass("btn btn-small btn-primary");  
+		$('#grafica_denuncia_unasemana').removeClass();
+		$('#grafica_denuncia_unasemana').addClass("btn btn-small");   	
+		$('#grafica_denuncia_dossemana').removeClass(); 
+		$('#grafica_denuncia_dossemana').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unmes').removeClass(); 
+		$('#grafica_denuncia_unmes').addClass("btn btn-small"); 
+		//se hace via ajax
+		$('#grafica_denuncia_ayer').consultaestadistica('ayer');
+		
+	});//fin de la funcion de click para el boton de 1 mes
+	$("#grafica_denuncia_unasemana").click(function() {
+		$('#grafica_denuncia_hoy').removeClass(); 
+		$('#grafica_denuncia_hoy').addClass("btn btn-small");  	
+		$('#grafica_denuncia_ayer').removeClass();  
+		$('#grafica_denuncia_ayer').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unasemana').removeClass();
+		$('#grafica_denuncia_unasemana').addClass("btn btn-small btn-primary");    	
+		$('#grafica_denuncia_dossemana').removeClass(); 
+		$('#grafica_denuncia_dossemana').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unmes').removeClass(); 
+		$('#grafica_denuncia_unmes').addClass("btn btn-small"); 
+		//se hace via ajax
+		$('#graficador').html('');
+		$('#grafica_denuncia_unasemana').consultaestadistica('una semana');
+	});//fin de la funcion de click para el boton de 1 mes
+	$("#grafica_denuncia_dossemana").click(function() {
+		$('#grafica_denuncia_hoy').removeClass(); 
+		$('#grafica_denuncia_hoy').addClass("btn btn-small");  	
+		$('#grafica_denuncia_ayer').removeClass();  
+		$('#grafica_denuncia_ayer').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unasemana').removeClass();
+		$('#grafica_denuncia_unasemana').addClass("btn btn-small");   	
+		$('#grafica_denuncia_dossemana').removeClass(); 
+		$('#grafica_denuncia_dossemana').addClass("btn btn-small btn-primary");  
+		$('#grafica_denuncia_unmes').removeClass(); 
+		$('#grafica_denuncia_unmes').addClass("btn btn-small"); 
+		//se hace via ajax
+		$('#graficador').html('');
+		$('#grafica_denuncia_dossemana').consultaestadistica('dos');
+		
+	});//fin de la funcion de click para el boton de 1 mes
+	$("#grafica_denuncia_unmes").click(function() {
+		$('#grafica_denuncia_hoy').removeClass(); 
+		$('#grafica_denuncia_hoy').addClass("btn btn-small");  	
+		$('#grafica_denuncia_ayer').removeClass();  
+		$('#grafica_denuncia_ayer').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unasemana').removeClass();
+		$('#grafica_denuncia_unasemana').addClass("btn btn-small");   	
+		$('#grafica_denuncia_dossemana').removeClass(); 
+		$('#grafica_denuncia_dossemana').addClass("btn btn-small"); 
+		$('#grafica_denuncia_unmes').removeClass(); 
+		$('#grafica_denuncia_unmes').addClass("btn btn-small btn-primary");  
+		//se hace via ajax
+		$('#graficador').html('');
+		$('#grafica_denuncia_unmes').consultaestadistica('un mes');
+		
+	});//fin de la funcion de click para el boton de 1 mes						
+
+$("#esta_municipio option:selected").text('Todos');
+});//fin de jqueryready
+</script>
+
+
+
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span3">
+        <legend >Control de Tiempo</legend>
+        <label for="grupo-botones" class="campotit">Rango de Fechas</label>
+       <div class="span12">
+			<div class="btn-group" id="grupo-botones">
+				<button class="btn btn-small" id="grafica_denuncia_hoy" >Hoy</button>
+				<button class="btn btn-small" id="grafica_denuncia_ayer">Ayer</button>
+				<button class="btn btn-small" id="grafica_denuncia_unasemana">1 Sem.</button>
+				<button class="btn btn-small" id="grafica_denuncia_dossemana">2 Sem.</button>
+				<button class="btn btn-small" id="grafica_denuncia_unmes">1 Mes.</button>
+			</div><!--fin del btn-group -->
+		</div>
+
+      </div>
+      <div class="span7">
+      	<legend>Control de Filtro</legend>
+ 		<div class="row-fluid">
+          <div class="span4">
+          	<label class="campotit">Estado Boleta</label>
+          	<select class="span12" id="esta_estado">
+					<option value="todos">Todos</option>
+					<option value="1">Preeliminar</option>
+					<option value="2">Finalizada</option>
+			</select>
+          </div>
+          <!--div class="span3">
+          	    <label class="campotit">Tipo</label>
+    			<select id="esta_tipo" class="span12">
+					<option value="1">Denuncias</option>
+					<option value="2">Incidencias</option>
+				</select>
+          </div-->
+          <?php
+$model = new mTblEvento;
+ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+   'id'=>'filtros',
+   //'action'=>Yii::app()->createUrl('cTblEvento/filtros'), //metodo en el controlador
+   //'type'=>'horizontal',
+   'method'=>'POST',
+ )); ?>
+
+           <div class="span4">
+          	 <p class="campotit">Departamento</p>
+         	   <?php
+             $criterio = new CDbCriteria;
+             #$criterio->order = '
+              $model = new MCatDepartamentos;
+                echo $form->dropDownListRow($model,'cod_depto',
+                 CHtml::listData(MCatDepartamentos::model()->findAll(array('order'=>'departamento ASC')),'cod_depto','departamento'),
+                   array('class'=>'span12',
+                         //'required'=>'',
+                         'maxlength'=>12,
+                         'id'=>'esta_departamento',
+                         'labelOptions'=>array('label'=>'',),
+                       /*'ajax'=>array('type' => 'POST',
+              'url' => CController::createUrl('Mapa/getMupios'),
+                       'update' =>'#MCatMunicipios_cod_mupesta_departamentoio'
+                       ),*/
+                       //'prompt'=>'Todos',
+                       //'onChange'=>'actualizaMupio();'
+                       )
+                   
+                );
+           ?>
+          </div>
+            <div class="span4">
+          	       <p class="campotit">Municipio</p>
+           <?php
+          
+             
+             $modelo = new MCatMunicipios;
+               $dropdown = $form->dropDownListRow($modelo,'cod_mupio',
+               array('0' => ''),array('class'=>'span12','maxlength'=>12,'id'=>'esta_municipio','labelOptions'=>array('label'=>'',),));
+               echo utf8_decode($dropdown);
+             
+           ?>
+          </div>
+        </div>
+      </div>
+        <div class="span2 alert alert-info">
+        	<form id="formulario">
+           	<label class="campotit">Tipo Respuesta</label>
+          	    <label class="radio">
+				  <input type="radio" name="optionsRadios" id="optionsRadios1" value="grafica" checked>
+				 Graficas
+				</label>
+				<label class="radio">
+				  <input type="radio" name="optionsRadios" id="optionsRadios2" value="mapas">
+				  Mapas
+				</label>
+				<label class="radio">
+				  <input type="radio" name="optionsRadios" id="optionsRadios3" value="grafica_mapas">
+				  Graficas/Mapas
+				</label>
+
+
+				
+
+</form>
+          </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+
+<div id="graficador">
+	
+</div><!--fin del div graficador-->
+
+   
+  
+  </div>
+</div>
+
+
+
+<?php $this->endWidget(); ?>
+
